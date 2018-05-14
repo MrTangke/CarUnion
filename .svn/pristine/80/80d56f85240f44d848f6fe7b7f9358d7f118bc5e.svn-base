@@ -1,0 +1,94 @@
+/**
+ * 
+ */
+package com.car.service.impl;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.car.entity.user.User;
+import com.car.entity.user.UserApply;
+import com.car.mapper.user.UserApplyMapper;
+import com.car.service.UserApplyService;
+
+/**
+ * @author 石晋荣
+ * 2018年4月25日  下午6:36:57
+ */
+@Service
+@Transactional
+public class UserApplyServiceImpl implements UserApplyService{
+	@Autowired
+	private UserApplyMapper applyMapper;
+	/* (non-Javadoc)
+	 * @see com.car.service.UserApplyService#inserForm(com.car.entity.user.User, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void inserForm(User user, String phone, String timea, String repId, String name, String carId) {
+		// TODO Auto-generated method stub
+		UserApply userApply = new UserApply();
+		userApply.setUserId(user.getUserId());
+		userApply.setApplyContent(repId);
+		userApply.setCarId(Integer.parseInt(carId));
+		userApply.setApplyTime(new Date().toLocaleString());
+		userApply.setReadyTime(timea);
+		userApply.setApplyComment(phone);
+		userApply.setApplyState(1);
+		applyMapper.insert(userApply);
+	}
+	/* (non-Javadoc)
+	 * @see com.car.service.UserApplyService#getAllApplies()
+	 */
+	@Override
+	public List<UserApply> getAllApplies() {
+		// TODO Auto-generated method stub
+		return applyMapper.getAllApplies();
+	}
+	/* (non-Javadoc)
+	 * @see com.car.service.UserApplyService#delApply(java.lang.String)
+	 */
+	@Override
+	public int delApply(String appId) {
+		// TODO Auto-generated method stub
+		return applyMapper.deleteByPrimaryKey(Integer.parseInt(appId));
+	}
+	/* (non-Javadoc)
+	 * @see com.car.service.UserApplyService#getApplyById(java.lang.String)
+	 */
+	@Override
+	public UserApply getApplyById(String appId) {
+		// TODO Auto-generated method stub
+		return applyMapper.selectByPrimaryKey(Integer.parseInt(appId));
+	}
+	/* (non-Javadoc)
+	 * @see com.car.service.UserApplyService#update(com.car.entity.user.UserApply)
+	 */
+	@Override
+	public void update(UserApply apply) {
+		// TODO Auto-generated method stub
+		applyMapper.updateByPrimaryKey(apply);
+	}
+	/* (non-Javadoc)
+	 * @see com.car.service.UserApplyService#getApplyByUserId(com.car.entity.user.User)
+	 */
+	@Override
+	public List<UserApply> getApplyByUserId(User user) {
+		// TODO Auto-generated method stub
+		return applyMapper. getApplyByUserId(user);
+	}
+	@Override
+	public UserApply getApplyByIds(Integer applyId) {
+		return applyMapper.getApplyByIds(applyId);
+	}
+	@Override
+	public void updateLL(UserApply apply) {
+		apply.setApplyState(apply.getApplyState()+1);
+		applyMapper.updateByPrimaryKey(apply);
+	}
+	
+
+}

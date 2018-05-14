@@ -1,0 +1,42 @@
+package com.car.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.car.entity.user.OrderForm;
+import com.car.service.AdminOrderFormService;
+
+@Controller
+@RequestMapping("adminOrderForm")
+public class AdminOrderFormController {
+
+	@Autowired
+	private AdminOrderFormService orderService;
+	/**
+	 * 查询订单
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("toOrderForm")
+	public String toOrderForm(HttpServletRequest request) {
+		List<OrderForm> orderForm = orderService.getOrderFormList();
+		request.setAttribute("orderForm", orderForm);
+		return "admin/user/admin_orderfrom";
+	}
+	/**
+	 * 删除订单
+	 * @param orderId
+	 * @return
+	 */
+	@RequestMapping("deleteOrderForm")
+	public String delete(Integer orderId) {
+		orderService.deleteByPrimaryKey(orderId);
+		return "admin/user/admin_orderfrom";
+	}
+	
+}

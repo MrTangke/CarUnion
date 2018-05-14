@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+<classPathEntry
+        location="F:/java-jar/mysql-connector-java-5.1.21.jar" />
+  <context id="context1">
+    <jdbcConnection connectionURL="jdbc:mysql://59.110.142.75:3306/03_car_union" driverClass="com.mysql.jdbc.Driver" password="0E1253D62E151554" userId="three" />
+    <javaModelGenerator targetPackage="com.car.entity.extra" targetProject="carUnionVER1.0" />
+    <sqlMapGenerator targetPackage="com.car.mapper.extra" targetProject="carUnionVER1.0" />
+    <javaClientGenerator targetPackage="com.car.mapper.extra" targetProject="carUnionVER1.0" type="XMLMAPPER" />
+    <table tableName="video" domainObjectName="Video" 
+    enableCountByExample="false" enableUpdateByExample="false" 
+    enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    
+  </context>
+</generatorConfiguration>

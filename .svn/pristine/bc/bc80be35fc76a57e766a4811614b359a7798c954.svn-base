@@ -1,0 +1,4 @@
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://59.110.142.75:3306/03_car_union?useUnicode=true&characterEncoding=utf-8
+username=three
+password=0E1253D62E151554
